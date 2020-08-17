@@ -20,54 +20,54 @@
   </transition>
 </template>
 <script>
-  export default {
-    name: 'CustomDrawer',
-    props: {
-      title: {
-        type: String,
-        default: ''
-      },
-      show: {
-        type: Boolean,
-        default: false
-      },
-      css: {
-        type: Object,
-        default: () => {
-        }
-      },
-      defaultWith: {
-        type: Boolean,
-        default: true
+export default {
+  name: 'CustomDrawer',
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+    show: {
+      type: Boolean,
+      default: false
+    },
+    css: {
+      type: Object,
+      default: () => {
       }
     },
-    computed: {
-      style() {
-        let defaultObj = {};
-        if (this.defaultWith) {
-          defaultObj = Object.assign(defaultObj, {width: '600px', padding: '20px', height: '100%'})
-        }
-        if (window.innerWidth < 650){
-          defaultObj.width = window.innerWidth + 'px';
-        }
-        let cssArr = [];
-        let obj = {};
-        obj = Object.assign({}, defaultObj, this.css);
-        for (let i in obj) {
-          cssArr.push(i + ':' + obj[i]);
-        }
-        return cssArr.join(';');
-      }
-    },
-    methods: {
-      rightClose () {
-        this.$emit('update:show', false);
-        this.$emit('right-close');
-        this.$emit('rightClose');
-        this.$emit('close');
-      }
+    defaultWith: {
+      type: Boolean,
+      default: true
     }
-  };
+  },
+  computed: {
+    style () {
+      let defaultObj = {}
+      if (this.defaultWith) {
+        defaultObj = Object.assign(defaultObj, { width: '600px', padding: '20px', height: '100%' })
+      }
+      if (window.innerWidth < 650) {
+        defaultObj.width = window.innerWidth + 'px'
+      }
+      const cssArr = []
+      let obj = {}
+      obj = Object.assign({}, defaultObj, this.css)
+      for (const i in obj) {
+        cssArr.push(i + ':' + obj[i])
+      }
+      return cssArr.join(';')
+    }
+  },
+  methods: {
+    rightClose () {
+      this.$emit('update:show', false)
+      this.$emit('right-close')
+      this.$emit('rightClose')
+      this.$emit('close')
+    }
+  }
+}
 </script>
 
 <style scoped>

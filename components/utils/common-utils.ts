@@ -18,7 +18,7 @@ export class DateUtils {
      * @param formatString
      * @returns {String}
      */
-    public static   formatStringToDateTime(formatString: string): string {
+    public static formatStringToDateTime(formatString: string): string {
         if (formatString) {
             return moment(formatString).format('YYYY-MM-DD HH:mm:ss');
         } else {
@@ -32,7 +32,7 @@ export class DateUtils {
      * @param format
      * @returns {String}
      */
-    public static   formatStringToDate(formatString: string, format:string = 'YYYY-MM-DD'): string {
+    public static formatStringToDate(formatString: string, format:string = 'YYYY-MM-DD'): string {
         if (formatString) {
             return moment(formatString).format(format);
         } else {

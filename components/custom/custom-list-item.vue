@@ -26,42 +26,42 @@
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator'
 
     @Component({})
-    export default class ListItem extends Vue {
-        public name: string = 'ListItem';
+export default class ListItem extends Vue {
+        public name = 'ListItem';
 
-        @Prop({default: () => []})
+        @Prop({ default: () => [] })
         public data!: any[];
 
-        @Prop({default: () => []})
+        @Prop({ default: () => [] })
         public perm!: string[];
 
-        @Prop({default: ''})
+        @Prop({ default: '' })
         public title!: string;
 
-        @Prop({default: ''})
+        @Prop({ default: '' })
         public describe!: string;
 
-        @Prop({default: ''})
+        @Prop({ default: '' })
         public label!: string;
 
-        @Prop({default: ''})
+        @Prop({ default: '' })
         public currentId!: string;
 
-        changeDict(item: any) {
-            this.$emit('change-click', item);
+        changeDict (item: any) {
+          this.$emit('change-click', item)
         }
 
-        public updateDict(item: any) {
-            this.$emit('update-click', item);
+        public updateDict (item: any) {
+          this.$emit('update-click', item)
         }
 
-        public removeDict(item: any) {
-            this.$emit('remove-click', item);
+        public removeDict (item: any) {
+          this.$emit('remove-click', item)
         }
-    };
+};
 </script>
 
 <style scoped lang="scss">

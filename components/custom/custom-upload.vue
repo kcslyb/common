@@ -17,92 +17,94 @@
 </template>
 
 <script>
-  export default {
-    name: "CustomUpload",
-    data() {
-      return {
-        fileFormat: ['JPG', 'JPEG', 'xls', 'xlsx', 'doc', 'docx', 'ppt', 'pptx', 'pdf', 'txt', 'jpg', 'png', 'zip', 'rar'],
-        dataList: this.fileList,
-        imageUrl: this.url
+export default {
+  name: 'CustomUpload',
+  data () {
+    return {
+      fileFormat: ['JPG', 'JPEG', 'xls', 'xlsx', 'doc', 'docx', 'ppt', 'pptx', 'pdf', 'txt', 'jpg', 'png', 'zip', 'rar'],
+      dataList: this.fileList,
+      imageUrl: this.url
+    }
+  },
+  props: {
+    url: {
+      type: String,
+      default: ''
+    },
+    fileList: {
+      type: Array,
+      default: () => []
+    },
+    maxFileSize: {
+      type: Number,
+      default: 5
+    },
+    isCheckImgType: {
+      type: Boolean,
+      default: false
+    },
+    uploadPath: {
+      type: String,
+      default: 'http://127.0.0.1:8018/api/file/upload'
+    },
+    btnCss: {
+      type: Object,
+      default: () => {
+        return {}
       }
     },
-    props: {
-      url: {
-        type: String,
-        default: ''
-      },
-      fileList: {
-        type: Array,
-        default: () => []
-      },
-      maxFileSize: {
-        type: Number,
-        default: 5
-      },
-      isCheckImgType: {
-        type: Boolean,
-        default: false
-      },
-      uploadPath: {
-        type: String,
-        default: 'http://127.0.0.1:8018/api/file/upload'
-      },
-      btnCss: {
-        type: Object,
-        default: () => {}
-      },
-      btnLabel: {
-        type: String,
-        default: '上传资料'
-      }
+    btnLabel: {
+      type: String,
+      default: '上传资料'
+    }
+  },
+  computed: {
+    getImageUrl () {
+      return this.imageUrl
     },
-    computed: {
-      getImageUrl() {
-        return this.imageUrl;
-      },
-      getDataList() {
-        return this.isCheckImgType ? [] : this.dataList
-      }
+    getDataList () {
+      return this.isCheckImgType ? [] : this.dataList
+    }
+  },
+  methods: {
+    handleRemove (file, fileList) {
+      this.$emit('on-remove', file, fileList)
     },
-    methods: {
-      handleRemove (file, fileList) {
-        this.$emit('on-remove', file, fileList);
-      },
-      onPreview (file) {
-        this.$emit('on-preview', file);
-      },
-      onError (err, file, fileList) {
-        this.$emit('on-error', err, file, fileList);
-      },
-      uploadSuccess(response, file) {
-        if (this.isCheckImgType) {
-          this.imageUrl = URL.createObjectURL(file.raw);
-        }
-        this.$emit('on-success', response);
-      },
-      beforeAvatarUpload(file) {
-        let fileType = file.name.substring(file.name.lastIndexOf('.') + 1);
-        if (!this.fileFormat.includes(fileType)) {
-          this.$emit('on-error', 'type not able');
+    onPreview (file) {
+      this.$emit('on-preview', file)
+    },
+    onError (err, file, fileList) {
+      this.$emit('on-error', err, file, fileList)
+    },
+    uploadSuccess (response, file) {
+      if (this.isCheckImgType) {
+        this.imageUrl = URL.createObjectURL(file.raw)
+      }
+      this.$emit('on-success', response)
+    },
+    beforeAvatarUpload (file) {
+      const fileType = file.name.substring(file.name.lastIndexOf('.') + 1)
+      if (!this.fileFormat.includes(fileType)) {
+        this.$emit('on-error', 'type not able')
+        return false
+      }
+      const isLt5M = file.size / 1024 / 1024 < this.maxFileSize
+      if (!isLt5M) {
+        this.$emit('on-error', 'size not able')
+        return false
+      }
+      if (this.isCheckImgType) {
+        const isJPG = file.type === 'image/jpeg'
+        const isPNG = file.type === 'image/png'
+        if (isJPG || isPNG) {
+          this.$emit('on-error', 'not img')
           return false
         }
-        const isLt5M = file.size / 1024 / 1024 < this.maxFileSize;
-        if (!isLt5M) {
-          this.$emit('on-error', 'size not able');
-          return false;
-        }
-        if (this.isCheckImgType) {
-          const isJPG = file.type === 'image/jpeg';
-          const isPNG = file.type === 'image/png';
-          if (isJPG || isPNG) {
-            this.$emit('on-error', 'not img');
-            return false;
-          }
-        }
-        return file;
       }
+      return file
     }
   }
+}
 </script>
 
 <style scoped>

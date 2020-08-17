@@ -15,44 +15,44 @@
 </template>
 
 <script>
-  import address from '@/utils/address';
+import address from '../utils/address'
 
-  export default {
-    name: 'CustomAddressCity',
-    props: {
-      width: {
-        type: String,
-        default: '50%'
-      },
-      size: {
-        type: String,
-        default: ''
-      }
+export default {
+  name: 'CustomAddressCity',
+  props: {
+    width: {
+      type: String,
+      default: '50%'
     },
-    data() {
-      return {
-        props: {
-          value: 'label'
-        },
-        options: address.address,
-        style: {
-          width: this.width
-        },
-        value: ''
-      };
-    },
-    methods: {
-      change() {
-        let address = '';
-        this.value.forEach(v => {
-          if (v !== '市辖区') {
-            address += v;
-          }
-        });
-        this.$emit('input', address);
-      }
+    size: {
+      type: String,
+      default: ''
     }
-  };
+  },
+  data () {
+    return {
+      props: {
+        value: 'label'
+      },
+      options: address.address,
+      style: {
+        width: this.width
+      },
+      value: ''
+    }
+  },
+  methods: {
+    change () {
+      let address = ''
+      this.value.forEach(v => {
+        if (v !== '市辖区') {
+          address += v
+        }
+      })
+      this.$emit('input', address)
+    }
+  }
+}
 </script>
 
 <style scoped>

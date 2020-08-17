@@ -8,38 +8,38 @@
 </template>
 
 <script>
-  export default {
-    name: 'CustomLogo',
-    props: {
-      width: {
-        type: Number,
-        default: 40
-      },
-      color: {
-        type: String,
-        default: '42b983'
-      },
-      css: {
-        type: Object,
-        default: () => {}
-      }
+export default {
+  name: 'CustomLogo',
+  props: {
+    width: {
+      type: Number,
+      default: 40
     },
-    computed: {
-      style() {
-        let defaultObj = {
-          width: this.width + 'px',
-          height: this.width + 'px',
-          'background-color': '#' + this.color
-        };
-        let cssArr = [];
-        let obj = Object.assign({}, defaultObj, this.css);
-        for (let i in obj) {
-          cssArr.push(i + ':' + obj[i]);
-        }
-        return cssArr.join(';');
+    color: {
+      type: String,
+      default: '42b983'
+    },
+    css: {
+      type: Object,
+      default: () => {}
+    }
+  },
+  computed: {
+    style () {
+      const defaultObj = {
+        width: this.width + 'px',
+        height: this.width + 'px',
+        'background-color': '#' + this.color
       }
+      const cssArr = []
+      const obj = Object.assign({}, defaultObj, this.css)
+      for (const i in obj) {
+        cssArr.push(i + ':' + obj[i])
+      }
+      return cssArr.join(';')
     }
   }
+}
 </script>
 
 <style scoped>

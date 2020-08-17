@@ -39,30 +39,30 @@
 </template>
 
 <script lang="ts">
-    import {Component, Provide, Prop, Vue} from 'vue-property-decorator';
+import { Component, Provide, Prop, Vue } from 'vue-property-decorator'
 
     @Component
-    export default class CustomCollapse extends Vue {
+export default class CustomCollapse extends Vue {
         @Provide()
-        public name: string = 'CustomCollapse';
+        public name = 'CustomCollapse';
 
-        @Prop({default: false})
+        @Prop({ default: false })
         public searchFlag!: boolean;
 
-        @Prop({default: '列表'})
+        @Prop({ default: '列表' })
         public title!: string;
 
         @Provide()
         public flag: boolean = this.searchFlag;
 
-        searchSubmit() {
-            this.$emit('searchSubmit');
+        searchSubmit () {
+          this.$emit('searchSubmit')
         }
 
-        searchReset() {
-            this.$emit('searchReset');
+        searchReset () {
+          this.$emit('searchReset')
         }
-    };
+};
 </script>
 
 <style scoped lang="scss">
@@ -80,12 +80,12 @@
         width: 100%;
         text-align: right;
         padding: 5px 0;
-        border-top: 1px solid $system-border-color;
+        border-top: 1px solid #e6e6e6;
     }
 
     .custom-collapse-warp {
         padding: 10px 0;
-        background-color: $system-collapse-color;
+        background-color: #e6e6e6;
     }
 
     .custom-collapse-header {
@@ -93,10 +93,10 @@
         margin: 0 10px;
         font-size: 0.8rem;
         text-align: right;
-        color: $black-color;
+        color: #000000;
         box-sizing: border-box;
-        background-color: $system-collapse-color;
-        border: 1px solid $system-border-color;
+        background-color: #f9f9f9;
+        border: 1px solid #e6e6e6;
         box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 
         & i {
@@ -115,9 +115,9 @@
         padding-right: 20px;
         margin: 0 10px;
         font-size: 0.8rem;
-        color: $black-color;
-        background-color: $white-color;
-        border: 1px solid $system-border-color;
+        color: #000000;
+        background-color: white;
+        border: 1px solid #e6e6e6;
         & .slot{
             padding-top: 20px;
         }

@@ -9,7 +9,7 @@
       <div class="nav">
         <span class="slider icon-nav-slider" :style="'top: ' + currentTop + 'px;'"></span>
         <template v-for="(item, index) in menuList">
-          <div @click="click(item, index)"class="cate-item"><span>{{item.index}}</span><a>{{item.label}}</a></div>
+          <div @click="click(item, index)" class="cate-item"><span>{{item.index}}</span><a>{{item.label}}</a></div>
         </template>
       </div>
     </slot>
@@ -20,10 +20,10 @@
 
 <script>
 export default {
-  name: "CustomFloatNavigation",
+  name: 'CustomFloatNavigation',
   props: {
     active: {
-      type: Number,
+      type: [Number, String],
       default: '1'
     },
     menuList: {
@@ -47,30 +47,30 @@ export default {
       default: 200
     }
   },
-  data() {
+  data () {
     return {
       isShow: false,
       activeIndex: this.active
     }
   },
   computed: {
-    currentTop() {
-      return (this.activeIndex -1)*23 + 18;
+    currentTop () {
+      return (this.activeIndex - 1) * 23 + 18
     }
   },
   methods: {
-    hide() {
-      this.isShow = false;
-      this.$emit('hide');
+    hide () {
+      this.isShow = false
+      this.$emit('hide')
     },
-    show() {
-      this.isShow = true;
-      this.$emit('hide');
+    show () {
+      this.isShow = true
+      this.$emit('hide')
     },
-    click(item, index) {
-      console.info(item);
-      this.activeIndex = index + 1;
-      this.$emit('click', item);
+    click (item, index) {
+      console.info(item)
+      this.activeIndex = index + 1
+      this.$emit('click', item)
     }
   }
 }

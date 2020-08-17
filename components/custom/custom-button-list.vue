@@ -13,32 +13,32 @@
 </template>
 
 <script>
-  export default {
-    name: "custom-button-list",
-    props: {
-      btnList: {
-        type: Array,
-        default: () => {
-          return [
-            {
-              action: 'submit',
-              label: '提交',
-              type: 'success'
-            }, {
-              action: 'cancel',
-              label: '取消',
-              type: 'info'
-            }
-          ]
-        }
-      }
-    },
-    methods: {
-      btnClick(item) {
-        this.$emit(item.action);
+export default {
+  name: 'custom-button-list',
+  props: {
+    btnList: {
+      type: Array,
+      default: () => {
+        return [
+          {
+            action: 'submit',
+            label: '提交',
+            type: 'success'
+          }, {
+            action: 'cancel',
+            label: '取消',
+            type: 'info'
+          }
+        ]
       }
     }
+  },
+  methods: {
+    btnClick (item) {
+      this.$emit(item.action)
+    }
   }
+}
 </script>
 
 <style scoped>
