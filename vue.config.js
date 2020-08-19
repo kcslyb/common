@@ -2,62 +2,28 @@
 const path = require('path')
 
 module.exports = {
-  publicPath: '/',
-  outputDir: 'dist',
-  // eslint-loader 是否在保存的时候检查
-  lintOnSave: true,
-  // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
-  assetsDir: 'static',
-  // 以多页模式构建应用程序。
-  pages: undefined,
-  // 是否使用包含运行时编译器的 Vue 构建版本
-  runtimeCompiler: false,
-  // 生产环境是否生成 sourceMap 文件，一般情况不建议打开
-  productionSourceMap: false,
+  pages: {
+    index: {
+      entry: 'examples/main.ts',
+      template: 'public/index.html',
+      filename: 'index.html'
+    }
+  },
   // webpack配置
   chainWebpack: config => {
-    config.module
-      .rule('vue')
-      .use('vue-loader')
-      .tap(options => {
-        return options
-      })
-    config.module
-      .rule('images')
-      .test(/\.(png|jpe?g|gif|ico)(\?.*)?$/)
-      .use('url-loader')
-      .loader('url-loader')
-      .options({
-        name: path.join('../main/static/', 'img/[name].[ext]')
-      })
+    config.resolve.alias
+      .set('@', path.resolve('examples')) // @ 默认指向 src 目录，这里要改成 examples
+      .set('~', path.resolve('packages')) // ~ 指向 packages
+
+    // 把 packages 和 examples 加入编译，因为新增的文件默认是不被 webpack 处理的
     config.module
       .rule('js')
-      .include
-      .add('/components/')
-      .end()
+      .include.add(/packages/).end()
+      .include.add(/examples/).end()
       .use('babel')
       .loader('babel-loader')
       .tap(options => {
-        // 修改它的选项...
         return options
       })
-  },
-  configureWebpack: config => {
-    const pluginsPublic = []
-    const pluginsDev = []
-    const pluginsPro = []
-    if (process.env.NODE_ENV === 'production') { // 为生产环境修改配置...process.env.NODE_ENV !== 'development'
-      config.plugins = [...config.plugins, ...pluginsPro, ...pluginsPublic]
-    } else {
-      // 为开发环境修改配置...
-      config.plugins = [...config.plugins, ...pluginsDev, ...pluginsPublic]
-    }
-  },
-  css: {
-    loaderOptions: {
-      sass: {
-        // prependData: '@import "~@/assets/scss/common.scss";'
-      }
-    }
   }
 }
