@@ -24,7 +24,6 @@ pnpm-debug.log*
 
 # 忽略目录
 src/
-components/
 public/
 node_modules/
 

@@ -1,5 +1,5 @@
 <script>
-import CustomFileUpload from '../custom/custom-file-upload'
+import CustomFileUpload from './/custom-file-upload'
 
 export default {
   name: 'CustomForm',
