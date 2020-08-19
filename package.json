@@ -1,8 +1,9 @@
 {
   "name": "common",
   "version": "0.1.0",
+  "author": "kcslyb",
   "private": false,
-  "main": "kcs-common.js",
+  "main": "kcs-common/kcs-common.umd.min.js",
   "directories": {
     "dist": "dist"
   },
