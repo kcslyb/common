@@ -3,9 +3,9 @@ import BtnList from './btn-list/index'
 
 const components = [
   BtnList
-];
+]
 
-const install = function(Vue: typeof import("vue/types/umd")) {
+const install = function (Vue: typeof import('vue/types/umd')) {
   components.forEach(component => {
     Vue.component(component.name, component)
   })
@@ -13,9 +13,9 @@ const install = function(Vue: typeof import("vue/types/umd")) {
 
 /* istanbul ignore if */
 if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue);
+  install(window.Vue)
 }
 
 export default {
- BtnList
+  BtnList
 }
