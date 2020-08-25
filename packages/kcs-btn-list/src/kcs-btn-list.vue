@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'BtnList'
+  name: 'KcsBtnList'
 }
 </script>
 

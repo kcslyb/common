@@ -6,12 +6,16 @@ Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'BtnList',
-    component: () => import('~/btn-list/src/btn-list.vue')
+    name: 'KcsBtnList',
+    component: () => import('~/kcs-btn-list/src/kcs-btn-list.vue')
   }, {
-    path: '/btn-list',
-    name: 'BtnList',
-    component: () => import('~/btn-list/src/btn-list.vue')
+    path: '/kcs-btn-list',
+    name: 'KcsBtnList',
+    component: () => import('~/kcs-btn-list/src/kcs-btn-list.vue')
+  }, {
+    path: '/kcs-common-page',
+    name: 'KcsCommonPage',
+    component: () => import('@/src/common-page.vue')
   }
 ]
 
