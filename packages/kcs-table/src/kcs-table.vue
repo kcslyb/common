@@ -113,7 +113,7 @@ export default {
       this.$emit('pageChange', temp)
     },
     handleCurrentChange (val) {
-      const temp = { offset: val, start: this.page.size }
+      const temp = { start: val, size: this.page.size }
       this.$emit('pageChange', temp)
     },
     // 是否显示序号
