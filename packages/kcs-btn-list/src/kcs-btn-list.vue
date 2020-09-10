@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     btnClick (item) {
-      this.$emit(item.action)
+      this.$emit('btnClick', item)
     }
   }
 }
@@ -54,6 +54,7 @@ export default {
 <style scoped lang="less">
   .kcs-but-list {
     padding: 10px;
+    border-bottom: 1px solid #E2E2E2;
   }
 
   .kcs-but-list-left {

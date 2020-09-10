@@ -56,6 +56,10 @@ export default {
     inline: {
       type: Boolean,
       default: true
+    },
+    isShowSearchBtn: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -202,39 +206,53 @@ export default {
           this.uploadSuccess(e)
         }}/>
       )
+    },
+    showSearchBtn () {
+      if (this.isShowSearchBtn) {
+        return (
+          <kcs-btn-list onBtnClick={(item) => {
+            this.$emit('btnClick', item)
+          }}/>
+        )
+      }
     }
   },
   render () {
     return (
-      <el-form
-        class="kcs-form"
-        rules={this.rules}
-        ref={this.formName}
-        inline={this.inline}
-        attrs={{ model: this.$attrs.value }}
-        label-position={this.labelPosition}
-        label-width={this.labelWidth + 'px'}>
-        {this.formItems.map((item) => {
-          return (
-            <el-form-item
-              prop={item.name}
-              label={item.label}>
-              {this.processor(item)}
-            </el-form-item>
-          )
-        })}
-      </el-form>
+      <div class="kcs-form-container">
+        { this.showSearchBtn() }
+        <el-form
+          class="kcs-form"
+          rules={this.rules}
+          ref={this.formName}
+          inline={this.inline}
+          attrs={{ model: this.$attrs.value }}
+          label-position={this.labelPosition}
+          label-width={this.labelWidth + 'px'}>
+          {this.formItems.map((item) => {
+            return (
+              <el-form-item
+                prop={item.name}
+                label={item.label}>
+                {this.processor(item)}
+              </el-form-item>
+            )
+          })}
+        </el-form>
+      </div>
     )
   }
 }
 </script>
 
 <style scoped lang="less">
+  .kcs-form-container {
+    border: 1px solid #E2E2E2;
+  }
   .kcs-form {
     display: flex;
     flex-wrap: wrap;
     padding-top: 20px;
-    border: 1px solid #E2E2E2;
   }
   .el-select {
     width: 100%;
