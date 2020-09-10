@@ -1,9 +1,12 @@
+import KcsTable from './kcs-table/index'
 import KcsBtnList from './kcs-btn-list/index'
 import kcsCommonPage from './kcs-common-page/index'
-
+import KcsFormOption from './kcs-form-option/index'
 const components = [
+  KcsTable,
   KcsBtnList,
-  kcsCommonPage
+  kcsCommonPage,
+  KcsFormOption
 ]
 
 const install = (Vue: any) => {

@@ -24,6 +24,7 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
+  height: 100%;
   .content {
     height: auto;
     overflow: auto;
@@ -37,7 +38,8 @@ export default {
     }
     .main {
       width: 100%;
-      text-align: center;
+      text-align: left;
+      padding: 20px;
       box-sizing: border-box;
     }
   }

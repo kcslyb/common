@@ -9,11 +9,11 @@ const routes: Array<RouteConfig> = [
     name: 'KcsBtnList',
     component: () => import('~/kcs-btn-list/src/kcs-btn-list.vue')
   }, {
-    path: '/kcs-btn-list',
+    path: '/KcsBtnList',
     name: 'KcsBtnList',
     component: () => import('~/kcs-btn-list/src/kcs-btn-list.vue')
   }, {
-    path: '/kcs-common-page',
+    path: '/KcsCommonPage',
     name: 'KcsCommonPage',
     component: () => import('@/src/common-page.vue')
   }
