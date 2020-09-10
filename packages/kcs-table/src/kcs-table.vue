@@ -54,8 +54,8 @@ export default {
       type: Object,
       default: () => {
         return {
-          size: 1,
-          start: 10
+          size: 10,
+          start: 1
         }
       }
     },
@@ -91,7 +91,7 @@ export default {
   },
   methods: {
     indexMethod (index) {
-      return ((this.page.size - 1) * this.page.start) + 1 + index
+      return ((this.page.start - 1) * this.page.size) + 1 + index
     },
     rowDblclick (row, column, event) {
       this.$emit('rowDblclick', row, column, event)
