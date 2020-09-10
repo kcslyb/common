@@ -91,7 +91,7 @@ export default {
   },
   methods: {
     indexMethod (index) {
-      return ((this.page.limit - 1) * this.page.offset) + 1 + index
+      return ((this.page.size - 1) * this.page.start) + 1 + index
     },
     rowDblclick (row, column, event) {
       this.$emit('rowDblclick', row, column, event)
