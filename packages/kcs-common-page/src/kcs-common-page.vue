@@ -39,7 +39,7 @@ export default {
     .main {
       width: 100%;
       text-align: left;
-      padding: 20px;
+      padding: 0 20px;
       box-sizing: border-box;
     }
   }
