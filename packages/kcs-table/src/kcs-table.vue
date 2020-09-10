@@ -54,8 +54,8 @@ export default {
       type: Object,
       default: () => {
         return {
-          limit: 1,
-          offset: 10
+          size: 1,
+          start: 10
         }
       }
     },
@@ -109,12 +109,12 @@ export default {
       this.$emit('selectionChange', selection)
     },
     handleSizeChange (val) {
-      this.page = Object.assign({}, this.page, { limit: val, offset: 1 })
-      this.$emit('pageChange', this.page)
+      const temp = { start: 1, size: val }
+      this.$emit('pageChange', temp)
     },
     handleCurrentChange (val) {
-      this.page = Object.assign({}, this.page, { offset: val })
-      this.$emit('pageChange', this.page)
+      const temp = { offset: val, start: this.page.size }
+      this.$emit('pageChange', temp)
     },
     // 是否显示序号
     isSequenceFlagMethod () {
