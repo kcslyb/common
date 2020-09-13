@@ -46,6 +46,10 @@ export default {
         {
           prop: 'title',
           label: '标题'
+        }, {
+          type: 'optButton',
+          prop: 'optButton',
+          label: '操作'
         }
       ]
     },
@@ -83,10 +87,13 @@ export default {
       type: Object,
       default: () => {
         return {
-          color: '#000',
+          color: '#2c3e50',
           background: '#eef5fe'
         }
       }
+    },
+    heightSpace: {
+      type: Number
     }
   },
   methods: {
@@ -160,6 +167,7 @@ export default {
                 label={value.label}
                 width={value.width}
                 fixed={value.fixed}
+                align={value.align ? value.align : 'center'}
                 sortable={value.sortable}
                 show-overflow-tooltip={value.showOverflowTooltip ? !value.showOverflowTooltip : true}
                 {...{
@@ -214,13 +222,13 @@ export default {
         const type = this.replaceStr(value.type)
         const functionName = 'acquire' + type
         if (Object.prototype.hasOwnProperty.call(this, functionName)) {
-          return this[functionName](value) // 拼接方法
+          return this[functionName](props, value) // 拼接方法
         } else {
           throw new Error(`KcsTable:${value.type}错误不存在对应的方法:${functionName}`)
         }
       }
       if (value.appendText) {
-        return props.row[value.prop] + value.appendText
+        return props.row[value.prop] + props.row[value.appendText]
       }
       return props.row[value.prop]
     },
@@ -238,12 +246,18 @@ export default {
     // },
     // 返回格式化data
     acquireDate (props, item) {
+      if (!props.row[item.prop]) {
+        return ''
+      }
       return (
         DateUtils.formatStringToDate(props.row[item.prop])
       )
     },
     // 返回格式化dataTime
     acquireDateTime (props, item) {
+      if (!props.row[item.prop]) {
+        return ''
+      }
       return (
         DateUtils.formatStringToDateTime(props.row[item.prop])
       )
@@ -303,6 +317,7 @@ export default {
           data={this.data}
           border={this.border}
           stripe={this.stripe}
+          height={this.heightSpace}
           highlight-current-row={true}
           header-cell-style={this.tableCellHeader}
           onSelect={this.select}

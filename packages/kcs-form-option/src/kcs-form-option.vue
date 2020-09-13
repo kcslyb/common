@@ -23,14 +23,6 @@ export default {
             name: 'productName',
             label: '名称'
           }, {
-            type: 'input',
-            name: 'productName',
-            label: '名称'
-          }, {
-            type: 'input',
-            name: 'productName',
-            label: '名称'
-          }, {
             type: 'select',
             name: 'productType',
             label: '类型',

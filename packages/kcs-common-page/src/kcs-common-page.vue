@@ -26,6 +26,7 @@ export default {
   flex-direction: column;
   height: 100%;
   .content {
+    flex: 1;
     height: auto;
     overflow: auto;
     box-sizing: border-box;
@@ -44,6 +45,7 @@ export default {
     }
   }
   .footer {
+    height: 30px;
   }
 }
 </style>
